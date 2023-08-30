@@ -47,7 +47,7 @@ class Worker(Business):
         self.worker_position = position
         self.worker_hours = hours
         self.calculate_wage(hours)
-        self.worker_data[self.worker_name] = [self.worker_id, self.business_name, self.worker_department, self.worker_position, self.worker_wage, self.worker_hours]
+        self.worker_data[self.worker_department] = [self.worker_name,self.worker_id, self.business_name,  self.worker_position, self.worker_wage, self.worker_hours]
 
     def show_worker(self):
         if not self.worker_data:
@@ -64,9 +64,9 @@ class Worker(Business):
                 print("Working Hours:", data[5])
                 print()
 
-    def search_worker(self, name):
-        if name in self.worker_data:
-            data = self.worker_data[name]
+    def search_worker(self, department):
+        if department in self.worker_data:
+            data = self.worker_data[department]
             print("Worker's ID Number:", data[0])
             print("Worker is associated with Business:", data[1])
             print("Worker's Department:", data[2])
@@ -77,7 +77,7 @@ class Worker(Business):
             print("Worker not found in records")
 
     def calculate_wage(self, hours):
-        self.worker_wage = 10000 * hours
+        self.worker_wage = 8000 * hours
 
 worker_object = Worker()
 
@@ -94,14 +94,14 @@ while True:
         name = input("Enter Worker's Name: ")
         if name.isdigit():
             print("Worker's name can't be a number.")
-            time.sleep(4)
+            time.sleep(5)
             os.system('cls')
             continue
 
         business_name = input("Enter Business Name: ")
         if not business_name.isalpha():
             print("Business name must contain only letters.")
-            time.sleep(4)
+            time.sleep(5)
             os.system('cls')
             continue
 
@@ -109,21 +109,21 @@ while True:
             id_number = int(input("Enter ID Number: "))
         except ValueError:
             print("ID number must be an integer.")
-            time.sleep(4)
+            time.sleep(5)
             os.system('cls')
             continue
 
         department = input("Enter Department: ")
         if not department.isalpha():
             print("Department must contain only letters.")
-            time.sleep(4)
+            time.sleep(5)
             os.system('cls')
             continue
 
         position = input("Enter Position: ")
         if not position.isalpha():
             print("Position must contain only letters.")
-            time.sleep(4)
+            time.sleep(5)
             os.system('cls')
             continue
 
@@ -131,33 +131,33 @@ while True:
             hours = int(input("Enter Working Hours: "))
         except ValueError:
             print("Working hours must be an integer.")
-            time.sleep(4)
+            time.sleep(5)
             os.system('cls')
             continue
 
         worker_object.add_worker(name, business_name, id_number, department, position, hours)
         print("Worker added successfully!")
-        time.sleep(4)
+        time.sleep(5)
         os.system('cls')
 
     elif choice == '2':
-        name = input("Enter Worker's Name: ")
-        worker_object.search_worker(name)
-        time.sleep(4)
+        department = input("Enter Worker's Department: ")
+        worker_object.search_worker(department)
+        time.sleep(5)
         os.system('cls')
 
     elif choice == '3':
         worker_object.show_worker()
-        time.sleep(4)
+        time.sleep(5)
         os.system('cls')
 
     elif choice == '4':
         print("Exiting the program.")
-        time.sleep(4)
+        time.sleep(5)
         os.system('cls')
         break
 
     else:
         print("Invalid choice! Please select a valid option.")
-        time.sleep(4)
+        time.sleep(5)
         os.system('cls')
